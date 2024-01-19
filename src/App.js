@@ -8,6 +8,7 @@ import Main from "./Shared/components/layout/Main";
 import HomePage from "./page/HomePage";
 import Banner from "./Shared/components/banner/Banner";
 import MoviePage from "./page/MoviePage";
+import MovieDentail from "./page/MovieDentail";
 
 
 
@@ -29,6 +30,13 @@ function App() {
           <Route path="/movies" element={<>
             <MoviePage></MoviePage>
           </>}></Route>
+          <Route 
+            path="/movies/movie-:id" 
+            element={
+            <>
+              <MovieDentail></MovieDentail>
+            </>
+            }></Route>
         </Route>
       </Routes>
     </div>
