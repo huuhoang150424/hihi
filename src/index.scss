@@ -25,4 +25,14 @@
     .banner .swiper {
         height: 100%;
     }
+    .btn {
+        @apply flex items-center justify-center bg-primary w-[30px] h-[30px] rounded-[2px] cursor-pointer transition-all duration-500 hover:bg-opacity-80;
+    }
+    .click-btn {
+        @apply hover:bg-opacity-50 transition-all duration-300;
+    }
+    .active {
+        @apply bg-opacity-50 transition-all duration-300;
+    }
+
 }
