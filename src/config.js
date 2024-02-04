@@ -1,6 +1,11 @@
-export const fetcher=(...args)=>{
-    return fetch(...args)
-                .then((res)=>{
-                    return res.json()
-                })
+export const fetcher= async (...args)=>{
+    try {
+        const res=await fetch(...args)
+        const data=await res.json()
+        return data
+    }
+    catch(e) {
+        console.log(`Lỗi ${e}`)
+        throw e
+    }
 }

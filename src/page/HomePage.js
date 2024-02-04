@@ -3,7 +3,6 @@ import MovieList from '../Shared/components/movie/MovieList';
 const HomePage = () => {
     return (
         <div>
-
             <section className="page-container-fluid pb-10 ">
                 <h2 className="capitalize text-white mb-10 text-3xl font-bold">Now Playing</h2>
                 <MovieList type={"now_playing"}></MovieList>
@@ -18,6 +17,7 @@ const HomePage = () => {
             </section>
         </div>
     );
+    
 };
 
 export default HomePage;

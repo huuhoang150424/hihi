@@ -70,10 +70,6 @@ function CreateMovie() {
         fetcher
     )
     if (!data) return null
-
-    
-    //console.log(cast)
-    //https://api.themoviedb.org/3/movie/${id}/credits?api_key=${Api_key1}
     return (
         <div className='py-10'>
             <h2 className='text-center font-bold text-[40px] mb-10'>Casts</h2>
@@ -104,7 +100,6 @@ function MovieVideo() {
         fetcher
     )
     if (!data) return null
-    //console.log(data)
 
     
     return (
@@ -147,7 +142,6 @@ function MovieSimilar() {
         fetcher
     )
     if (!data) return null
-    console.log(data)
     return (
         <div className='py-10'>
             <h2 className='text-3xl font-medium mb-10'>Similar Movie</h2>

@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Button = ({onClick,className,children,type="button",bgColor='primary'}) => {
     let BgColor='bg-primary';
@@ -16,7 +15,7 @@ const Button = ({onClick,className,children,type="button",bgColor='primary'}) =>
         <button 
             type={type}
             onClick={onClick}
-            className={`py-3 px-6 rounded-lg capitalize ${BgColor} w-full mt-auto ${className}`}
+            className={`py-3 px-6 rounded-lg capitalize ${BgColor} mt-auto ${className} `}
         >
             {children}
         </button>

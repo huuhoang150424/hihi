@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../button/Button";
+import MovieLoading from "./MovieLoading";
 
 
 const MovieCard = ({item}) => {
     const {title,vote_average,release_date,poster_path,id}=item
     const naviagte=useNavigate()
-
     return (
         <div className="flex flex-col rounded-lg p-3 bg-slate-800 text-white h-full select-none cursor-pointer">
             <img 
@@ -21,9 +21,7 @@ const MovieCard = ({item}) => {
                 </div>
                 <Button onClick={()=>{ naviagte(`/movies/movie-${id}`) }} >Watch Now</Button>
             </div>
-
         </div>
     );
 };
-
 export default MovieCard;

@@ -1,15 +1,16 @@
-import { useState,useEffect } from "react";
-import useSWR from "swr";
 
+import useSWR from "swr";
+import Button from "../button/Button";
 import {fetcher} from "../../../config"
 import { Api_key1 } from "../../Constant/app";
 import {SwiperSlide,Swiper} from "swiper/react";
 import "swiper/scss"
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
     const {data,error}=useSWR(`https://api.themoviedb.org/3/movie/upcoming?api_key=${Api_key1}`,fetcher)
+
     const movie=data?.results || []
-    console.log(movie)
     return (
         //grabCursor={"true"} con trỏ chuột khi kéo side
         //slidesPerView={"auto"} tính toán số lượng phần tử
@@ -27,7 +28,8 @@ const Banner = () => {
     );
 };
 const BannerItem=({item})=>{
-    const {title,poster_path}=item
+    const {title,poster_path,id}=item
+    const navigate=useNavigate()
     return (
         <div className="w-full h-full rounded-lg bg-white relative">
             <div className="inset-0 absolute bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg "></div>
@@ -43,7 +45,12 @@ const BannerItem=({item})=>{
                     <span className="py-2 px-4 border border-white rounded-md">Avengers</span>
                     <span className="py-2 px-4 border border-white rounded-md">Avengers</span>
                 </div>
-                <button className="py-3 px-6 rounded-lg bg-primary text-white font-medium ">Watch Now</button>
+                <Button 
+                    onClick={()=>{return navigate(`/movies/movie-${id}`)}}
+                    className="w-auto"
+                >
+                    Watch now
+                </Button>
             </div>
 
         </div>

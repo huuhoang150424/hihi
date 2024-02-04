@@ -1,13 +1,11 @@
 import { useState ,memo} from "react";
-import { Link ,useLocation, useSearchParams} from "react-router-dom";
-import { Api_key1 } from "../../Constant/app";
+import { Link } from "react-router-dom";
 const Paginate = ({pages}) => {
-    const {data,filterDebouncen,handleChildData}=pages
+    const {data,handleChildData}=pages
     const {page}=data
     const [movPages,setMovPages]=useState(page)
     //console.log(pages)
     const SumPages=40
-    console.log("render 1")
     const renderPages=(dental=2)=>{
         const ListPages=[]
         const left=movPages-dental

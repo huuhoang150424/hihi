@@ -5,11 +5,13 @@ import { Api_key1 } from "../Shared/Constant/app";
 import { useEffect, useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 import Paginate from "../Shared/components/layout/Paginate";
+import MovieLoading from "../Shared/components/movie/MovieLoading";
 
 
 const type = 'popular';
 
 const MoviePage = () => {
+    const [hiddenLoading,setHiddenLoading]=useState(true)
     const [page, setPage] = useState(1);
     const [filter, setFilter] = useState("");
     const [submit, setSubmit] = useState("");
@@ -26,7 +28,6 @@ const MoviePage = () => {
         //clean khi component unmounted
         return ()=> localStorage.clear()
     }, []);
-    console.log("render ")
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
@@ -52,13 +53,10 @@ const MoviePage = () => {
         setPage(childData);
     };
 
-    const { data, error } = useSWR(url, fetcher);
+    const { data,isLoading } = useSWR(url, fetcher);
 
-    if (!data) return null;
-    if (error) return <div>Lỗi</div>;
-
-    const Loading = !data && !error;
-    if (Loading) return null;
+    //if (error) return <div>Lỗi</div>;
+    if (isLoading) return null
 
     return (
         <div className="py-10 page-container-fluid ">
@@ -76,22 +74,23 @@ const MoviePage = () => {
                 >Search</div>
             </div>
             {
-                Loading && (
+                isLoading && (
                     <div className="rounded-full border-4 border-t-transparent border-primary w-10 h-10 mx-auto animate-spin"></div>
                 )
             }
             <div className="grid grid-cols-4 gap-10">
-                {
-                    !Loading &&
-                    data?.results?.length > 0 ? (
-                        data.results.map((item) => (
-                            <div key={item.id}><MovieCard item={item}></MovieCard></div>
-                        ))
-                    ) : (
-                        <div>Không tìm thấy kết quả tìm kiếm</div>
-                    )
-                }
-            </div>
+                    {
+                        !isLoading &&
+                        data?.results?.length > 0 ? (
+                            data.results.map((item) => (
+                                <div key={item.id}><MovieCard item={item}></MovieCard></div>
+                            ))
+                        ) : (
+                            <div>Không tìm thấy kết quả tìm kiếm</div>
+                        )
+                    }
+                </div>
+
             <Paginate pages={{ data, filterDebounce, handleChildData }}></Paginate>
         </div>
     );
